@@ -1,5 +1,6 @@
 {
   "projects": {
-    "default": "goose-platform"
+    "default": "goose-platform",
+    "stage": "goose-platform"
   }
 }
