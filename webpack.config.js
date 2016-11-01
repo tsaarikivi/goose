@@ -1,4 +1,5 @@
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
+var HtmlWebpackPlugin = require('html-webpack-plugin')
 var webpack = require('webpack')
 
 module.exports = {
@@ -11,7 +12,7 @@ module.exports = {
         path: __dirname + '/build',
         filename: '[name].[hash].js',
         chunkFilename: '[name].[hash].js',
-        publicPath: '/build/',
+        //publicPath: '/build/',
         libraryTarget: 'var'
     },
     plugins: [
@@ -24,6 +25,11 @@ module.exports = {
         ),
         new webpack.optimize.UglifyJsPlugin({
             compress: { warnings: true }
+        }),
+        new HtmlWebpackPlugin({
+            title: 'boris',
+            chunks: ['app', 'polyfill', 'common'],
+            template: 'index.html'
         })
     ],
     module: {

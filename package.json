@@ -8,8 +8,10 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack-dev-server --inline",
-    "webpack": "NODE_ENV='production' webpack && cp -R src/assets build/assets && cp src/index.html build/index.html"
+    "start": "webpack-dev-server --hot --inline",
+    "build": "rm -rf build/ && NODE_ENV='production' webpack && cp -rf images build/ && cp favicon.ico build/favicon.ico",
+    "deploy:stage": "npm run webpack && firebase use stage && firebase deploy",
+    "deploy:stage:rules": "firebase use stage && firebase deploy --only database"
   },
   "repository": {
     "type": "git",
@@ -36,6 +38,7 @@
     "eslint-loader": "^1.6.0",
     "eslint-plugin-react": "^6.4.1",
     "extract-text-webpack-plugin": "^1.0.1",
+    "html-webpack-plugin": "^2.24.1",
     "node-sass": "^3.10.1",
     "postcss-loader": "^1.1.0",
     "sass-loader": "^4.0.2",
