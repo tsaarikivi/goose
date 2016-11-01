@@ -7,10 +7,16 @@
     "test": "test"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack-dev-server --hot --inline",
-    "build": "rm -rf build/ && NODE_ENV='production' webpack && cp -rf images build/ && cp favicon.ico build/favicon.ico",
-    "deploy:stage": "npm run webpack && firebase use stage && firebase deploy",
+    "rb": "rm -rf build/",
+    "wp": "NODE_ENV='production' webpack",
+    "im": "cp -rf images build/",
+    "sw": "cp service-worker.js build/service-worker.js",
+    "fi": "cp favicon.ico build/favicon.ico",
+    "ma": "cp manifest.json build/manifest.json",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npm run rb && npm run wp && npm run im && npm run sw && npm run fi && npm run ma",
+    "deploy:stage": "npm run build && firebase use stage && firebase deploy",
     "deploy:stage:rules": "firebase use stage && firebase deploy --only database"
   },
   "repository": {

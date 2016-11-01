@@ -24,10 +24,10 @@ module.exports = {
             '[name].css'
         ),
         new webpack.optimize.UglifyJsPlugin({
-            compress: { warnings: true }
+            compress: { warnings: false }
         }),
         new HtmlWebpackPlugin({
-            title: 'boris',
+            title: 'goose',
             chunks: ['app', 'polyfill', 'common'],
             template: 'index.html'
         })
