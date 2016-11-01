@@ -1,31 +1,22 @@
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
-var webpack = require('webpack')
 
 module.exports = {
     entry: {
         app: './src/index.js',
         polyfill: ['babel-polyfill'],
-        common: ['firebase']
+        common: ['firebase', 'react']
     },
     output: {
         path: __dirname + '/build',
-        filename: '[name].[hash].js',
-        chunkFilename: '[name].[hash].js',
-        //publicPath: '/build/',
+        filename: '[name].js',
+        chunkFilename: '[name].js',
         libraryTarget: 'var'
     },
     plugins: [
-        new webpack.optimize.CommonsChunkPlugin({
-            name: 'common',
-            minChunks: 2
-        }),
         new ExtractTextPlugin(
             '[name].css'
         ),
-        new webpack.optimize.UglifyJsPlugin({
-            compress: { warnings: false }
-        }),
         new HtmlWebpackPlugin({
             title: 'goose',
             chunks: ['app', 'polyfill', 'common'],

@@ -7,15 +7,18 @@
     "test": "test"
   },
   "scripts": {
-    "start": "webpack-dev-server --hot --inline",
+    "ws": "webpack-dev-server --config webpack.config.dev.js --content-base build --hot --inline",
+    "dw": "webpack --config webpack.config.dev.js",
     "rb": "rm -rf build/",
-    "wp": "NODE_ENV='production' webpack",
+    "wp": "NODE_ENV='production' webpack --config webpack.config.prod.js",
     "im": "cp -rf images build/",
     "sw": "cp service-worker.js build/service-worker.js",
     "fi": "cp favicon.ico build/favicon.ico",
     "ma": "cp manifest.json build/manifest.json",
+    "cp": "npm run im && npm run sw && npm run fi && npm run ma",
+    "start": "npm run rb && npm run dw && npm run cp && npm run ws",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "npm run rb && npm run wp && npm run im && npm run sw && npm run fi && npm run ma",
+    "build": "npm run rb && npm run wp && npm run cp",
     "deploy:stage": "npm run build && firebase use stage && firebase deploy",
     "deploy:stage:rules": "firebase use stage && firebase deploy --only database"
   },
