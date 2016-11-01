@@ -21,16 +21,19 @@ module.exports = {
         }),
         new ExtractTextPlugin(
             '[name].css'
-        )
+        ),
+        new webpack.optimize.UglifyJsPlugin({
+            compress: { warnings: true }
+        })
     ],
     module: {
-        /*preLoaders: [
+        preLoaders: [
             {
                 test: /\.jsx?$/,
                 loader: 'eslint-loader',
                 exclude: /node_modules/
             }
-        ],*/
+        ],
         loaders: [
             {
                 test: /\.js$/,
