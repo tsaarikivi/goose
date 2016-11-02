@@ -20,7 +20,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "npm run rb && npm run wp && npm run cp",
     "deploy:stage": "npm run build && firebase use stage && firebase deploy",
-    "deploy:stage:rules": "firebase use stage && firebase deploy --only database"
+    "deploy:stage:rules": "firebase use stage && firebase deploy --only database",
+    "buildstats": "webpack --config webpack.config.prod.js --profile --json > stats.json"
   },
   "repository": {
     "type": "git",
