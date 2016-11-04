@@ -29,7 +29,7 @@ let reduxStore = createStore(store, applyMiddleware(thunk))
 // render applications in place of #app-entry in index.html
 ReactDOM.render(
     <Provider store={reduxStore}>
-        <Router history={hashHistory} routes={routes} />,
-        document.getElementById('app')
-    </Provider>
+        <Router history={hashHistory} routes={routes} />
+    </Provider>,
+    document.getElementById('app-entry')
 )
