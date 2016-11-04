@@ -5,8 +5,11 @@ import thunk from 'redux-thunk'
 import { Provider } from 'react-redux'
 import { Router, hashHistory } from 'react-router'
 
-import store from './store'
 import routes from './routes'
+import store from './store'
+
+// create redux store and apply middleware
+let reduxStore = createStore(store, applyMiddleware(thunk))
 
 // initialize firebase
 import firebase from 'firebase'
@@ -23,8 +26,18 @@ const fbconfig = {
 }*/
 firebase.initializeApp(fbconfig)
 
-// create redux store and apply middleware
-let reduxStore = createStore(store, applyMiddleware(thunk))
+// set firebase auth eventlistener
+// this function could be outside in a separate component
+firebase.auth().onAuthStateChanged(function (user) {
+    if (user) {
+        console.log("logged in as:", user)
+        // we could send a reduxStore.dispatch() here
+        // or call an action to fetch user data from db
+        // this should at least lead to a state change
+    } else {
+        console.log("logged out")
+    }
+})
 
 // render applications in place of #app-entry in index.html
 ReactDOM.render(
