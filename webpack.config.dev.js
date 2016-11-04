@@ -2,6 +2,7 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
+    devtool: "inline-sourcemap",
     entry: {
         app: './src/index.js',
         polyfill: ['babel-polyfill'],
@@ -15,22 +16,23 @@ module.exports = {
     },
     plugins: [
         new ExtractTextPlugin(
-            '[name].css'
+            '[name].css',
+            { allChunks: true }
         ),
         new HtmlWebpackPlugin({
             title: 'goose',
             chunks: ['app', 'polyfill', 'common'],
-            template: 'index.html'
+            template: 'template.html'
         })
     ],
     module: {
-        preLoaders: [
+        /*preLoaders: [
             {
                 test: /\.jsx?$/,
                 loader: 'eslint-loader',
                 exclude: /node_modules/
             }
-        ],
+        ],*/
         loaders: [
             {
                 test: /\.js$/,

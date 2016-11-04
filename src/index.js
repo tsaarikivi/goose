@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom'
 import { createStore, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
 import { Provider } from 'react-redux'
-import { Router, browserHistory } from 'react-router'
+import { Router, hashHistory } from 'react-router'
 
 import store from './store'
 import routes from './routes'
@@ -27,9 +27,9 @@ firebase.initializeApp(fbconfig)
 let reduxStore = createStore(store, applyMiddleware(thunk))
 
 // render applications in place of #app-entry in index.html
-const app = document.getElementById('app-entry')
 ReactDOM.render(
     <Provider store={reduxStore}>
-        <Router history={browserHistory} routes={routes} />
+        <Router history={hashHistory} routes={routes} />,
+        document.getElementById('app')
     </Provider>
 )

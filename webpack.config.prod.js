@@ -17,7 +17,8 @@ module.exports = {
     },
     plugins: [
         new ExtractTextPlugin(
-            '[name].css'
+            '[name].css',
+            { allChunks: true }
         ),
         new webpack.optimize.CommonsChunkPlugin({
             name: 'common',
@@ -29,16 +30,8 @@ module.exports = {
         new HtmlWebpackPlugin({
             title: 'goose',
             chunks: ['app', 'polyfill', 'common'],
-            template: 'index.html'
-        })/*,
-        new BundleAnalyzerPlugin({
-            analyzerMode: 'server',
-            analyzerPort: 3000,
-            reportFilename: 'report.html',
-            openAnalyzer: true,
-            generateStatsFile: true,
-            statsFilename: 'stats.json'
-        })*/
+            template: 'template.html'
+        })
     ],
     module: {
         /*preLoaders: [

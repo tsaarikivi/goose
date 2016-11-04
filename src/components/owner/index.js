@@ -5,6 +5,7 @@ export default class Owner extends React.Component {
         return (
             <div>
                 Owner
+                {this.props.children}
             </div>
         )
     }
