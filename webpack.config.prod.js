@@ -1,5 +1,6 @@
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
+/*var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin*/
 var webpack = require('webpack')
 
 module.exports = {
@@ -29,16 +30,24 @@ module.exports = {
             title: 'goose',
             chunks: ['app', 'polyfill', 'common'],
             template: 'index.html'
-        })
+        })/*,
+        new BundleAnalyzerPlugin({
+            analyzerMode: 'server',
+            analyzerPort: 3000,
+            reportFilename: 'report.html',
+            openAnalyzer: true,
+            generateStatsFile: true,
+            statsFilename: 'stats.json'
+        })*/
     ],
     module: {
-        preLoaders: [
+        /*preLoaders: [
             {
                 test: /\.jsx?$/,
                 loader: 'eslint-loader',
                 exclude: /node_modules/
             }
-        ],
+        ],*/
         loaders: [
             {
                 test: /\.js$/,

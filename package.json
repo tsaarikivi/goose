@@ -21,7 +21,8 @@
     "build": "npm run rb && npm run wp && npm run cp",
     "deploy:stage": "npm run build && firebase use stage && firebase deploy",
     "deploy:stage:rules": "firebase use stage && firebase deploy --only database",
-    "buildstats": "webpack --config webpack.config.prod.js --profile --json > stats.json"
+    "buildstats": "NODE_ENV='production' webpack --config webpack.config.prod.js --profile --json > stats.json",
+    "analyze": "npm run buildstats && webpack-bundle-analyzer stats.json"
   },
   "repository": {
     "type": "git",
